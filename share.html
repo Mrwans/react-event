@@ -1,0 +1,189 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+<meta charset="UTF-8">
+<title>Slides</title>
+<link rel="stylesheet" href="slides.css">
+</head>
+<body>
+    <button type="button" class="prev handle" id="prev">&lt;</button>
+    <div class="tips">F11进入全屏，[Enter,Space,&#8594;,&#8595;]翻下一页，[Esc,&#8592;,&#8593;]翻上一页 &nbsp;&nbsp;&nbsp;<a class="c-red" href="#" id="changeType">[切换风格]</a></div>
+    <section class="slides" id="slides">
+        
+
+        <!-- 页面区 -->
+        <article class="page">
+            <h1>React事件</h1>
+            <br><br>
+            <p>1：react事件和原生dom事件的区别</p>
+            <p>2: react是如何在虚拟dom上完成事件的绑定，以及委托到顶层对象</p>
+            <p>3: 既然react采用的事件代理，那他又是如何做到事件冒泡的效果,以及如何阻止冒泡的</p>
+            <p>4: react存在事件捕获吗？他是真正的事件捕获吗？他又是如何实现捕获效果的呢？</p>
+            <p>5: react事件插件的机制及合成的事件对象（react支持的七个事件插件）</p>
+        </article>
+        <!-- /页面区 -->
+
+        <!-- 页面区 -->
+        <article class="page" >
+            <h1>react事件和原生dom事件的区别</h1>
+            <br><br>
+            <p>标准原生dom事件流的三个阶段：捕获阶段， 目标对象本身的处理阶段，冒泡阶段;</p>
+            <p>原生dom的三种绑定方式;</p> 
+            <p>事件代理(事件绑定阶段和事件处理阶段)</p>
+            <p>原生事件对象中新增的path属</p>
+            <img src="img/path.png">
+            <br><br><br>
+            <p>react中的事件</p>
+            <p>Rect采用的是顶层的事件代理机制，能够保持事件冒泡的一致性，可以跨浏览器执行，甚至可以在低版本的浏览器中使用HTML5的事件。 React 实现了一个合成事件层，这个事件层消除了 IE 与 W3C 标准实现之间的兼容问题。所有通过 JSX 这种方式绑定的事件都是绑定到合成事件。合成事件会以事件委托（event delegation）的方式绑定到组件最上层，并且在组件卸载（unmount）的时候自动销毁绑定的事件。</p>
+        </article>
+        <!-- /页面区 -->
+
+        <!-- 页面区 -->
+        <article class="page" >
+            <h1>react中使用原生事件，及混用</h1>
+            <br><br><br><br>
+            <p>react中提供了很好的合成事件系统，有些场景下得需要使用原生事件，react提供了完整的生命周期方法，其中在componentDidMount中我们可以完成事件的绑定，使用原生绑定的事件需在组件卸载的时候手动移除，而在react中提供的事件系统中则不需要</p>
+            <p>注意点：</p>
+            <p>用原生绑定的事件若组织冒泡，那么用react绑定的事件则不会响应</p>
+            <p>在react的合成事件中获取原生事件对象nativeEvenet，且通过nativeEvenet.stopPropagation()不能组织冒泡，需使用react提供的，且没法阻止原生事件的响应，但是在原生十佳中可以组织到react的事件的响应</p>
+        </article>
+        <!-- /页面区 -->
+
+        <!-- 页面区 -->
+        <article class="page" >
+            <h1>react插件机制（事件绑定阶段）</h1>
+            <br><br>
+            <p class="c-blue">ReactDOMComponent.js</p>   mountComponent（）  =>　 _createOpenTagMarkupAndPutListeners（）＝>　enqueuePutListener（）=><br>
+            <p class="c-blue">ReactBrowserEventEmitter.js</p> <p>listenTo() => </p>
+            <p class="c-blue">ReactEventListener.js</p> <p>trapBubbledEvent() =></p> 
+            <p class="c-blue">fbjs/lib/EventListener.js</p> <p>listen() </p>
+            <p>初步完成同种类型事件的单次绑定且绑定在document对象上</p>
+            <p>在jsx上绑定的同种类型事件的不同阶段的命名，如onClick、 onClickCapture转化为统一的命名如topClcik</p>
+        </article>
+        <!-- /页面区 -->
+
+        <!-- 页面区 -->
+        <article class="page">
+            <h1>添加事件处理器到listenerBank这个统一的事件处理器对象中</h1>
+            <br>
+            <p>jsx中每一个嵌套的dom标签渲染完毕（依次往上递归）会去调用</p>
+            <p><code> transaction.getReactMountReady().enqueue(putListener, {
+                id: id,
+                registrationName: registrationName,
+                listener: listener
+                });</code>
+            </p>    
+            <p class="c-blue">CallbackQueue.js</p>
+            <p>enqueue() 把该虚拟dom节点上绑定的事件信息（domId，事件名，事件处理函数）和处理该事件信息的函数分别添加到回调函数队列和上下文队列，回调函数队列和上下文队列的顺序一一对应，队列中的回调函数的顺序与虚拟dom被嵌套的顺序对应。</p>
+            <p>等到整个react的事务完毕（变成真实dom或更新的时候），就会遍历回调队列中的每个回调函数（在对应的上下文队列的作用域中执行）</p>
+            <p>
+                <code>function putListener() {<br>
+                        var listenerToPut = this; <br>
+                        ReactBrowserEventEmitter.putListener(listenerToPut.id, listenerToPut.registrationName, listenerToPut.listener);
+                    }</code>
+            </p>
+        </article>
+        <!-- /页面区 -->
+        <article class="page">
+            <br><br><br><br>
+            <p class="c-blue">EventPluginHub.js</p>
+            <p>putListener() 只是把每种事件放到listenerBank{}这个事件对象中，对象的键是事件名，值是一个对象，这个对象中的键是该react事件绑定在虚拟dom上的那个虚拟的domid，值是事件处理器,此时我们通过react绑定的所有事件都存在与这个事件对象中了，下一步就是如何有序的去
+            触发这些事件。</p>
+            <p><img src="img/listenBank.png" alt=""></p>
+        </article>
+        <!-- 页面区 -->
+        <article class="page">
+            <h1>触发该事件，事件处理器执行阶段</h1>
+            <p style="padding: 10px 20px"><img src="img/eventProcess.png" alt=""></p>
+        </article>
+        <!-- /页面区 -->
+
+        <!-- 页面区 -->
+        <article class="page" >
+            <P>在真实dom元素上触发某一类型的事件，通过事件冒泡机制到达document对象，并触发document对象上之前解析jsx时绑定的同类型事件处理器，（这也就是用原生的事件绑定，阻止冒泡，通过react绑定的事件不会响应，
+                也是为什么通过原生绑定的事件先被触发然后通过react事件绑定的事件才会被触发的原因，及时原生绑定的元素的层次结构比react绑定的元素层次结构要高）
+            </P>
+            <p class="c-blue">ReactEventListener.js</p>
+            <a href="https://zhidao.baidu.com/question/745513158575070932.html" style="display: block;" target=_blank>静态池？</a>
+            <p>dispatchEvent() => TopLevelCallbackBookKeeping() => </p>
+            <p class="c-blue">ReactUpdates.js</p>
+            <p>batchedUpdates() => .....</p>
+            <p>handleTopLevelImpl() => handleTopLevelWithoutPath() => </p>
+            <p class="c-blue">ReactEventEmitterMixin.js</p>
+            <p>handleTopLevel() => </p>
+            <p class="c-blue">EventPluginHub.js(这里主要合成这个强大的事件对象)</p>
+            <p>extractEvents() => (遍历预加载进来的各个事件扩展插件，合成react自定义的事件对象，不是每个扩展插件都会被加载进来)</p>
+        </article>
+        <!-- /页面区 -->
+        <article class="page">
+            <br><br>
+            <p class="c-blue">SimpleEventPlugin.js (以react支持的简单事件为例)</p>
+            <p>extractEvents() => 
+            <p>
+                <code>
+                    var event = EventConstructor.getPooled(dispatchConfig, topLevelTargetID, nativeEvent, nativeEventTarget);
+                    EventPropagators.accumulateTwoPhaseDispatches(event);
+                </code>
+            </p>
+ ·          <p class="c-blue">SyntheticMouseEvent.js</p>
+            <p>SyntheticMouseEvent() => </p>
+            <p class="c-blue">SyntheticUIEvent.js</p>
+            <p>SyntheticUIEvent() => </p>
+            <p class="c-blue">SyntheticEvent.js</p>
+            <p>SyntheticEvent() => (会遍历具体的事件插件此处为SyntheticMouseEvent中的自定义的一些属性，切提供了preventDefaul()和stopPropagation(),最终合成了自定义的事件对象)</p>
+            <p class="c-blue">EventPropagators.js</p>
+            <p>accumulateTwoPhaseDispatches() =>　accumulateTwoPhaseDispatchesSingleSkipTarget() => </p>
+            <p class="c-blue">ReactInstanceHandles.js</p>
+            <p>traverseTwoPhaseSkipTarget() => traverseParentPath() => (根据给定的domid向下和向上遍历并执行参数中的回调，这里需要注意一下,模拟出了捕获和冒泡的效果)</p>
+        </article>
+        <!-- 页面区 -->
+        <article class="page">
+            <p class="c-blue">EventPropagators.js</p>
+            <p>accumulateDirectionalDispatches() => listenerAtPhase() =>（分别处理事件的两个阶段）</p>
+            <p>getListener()(从我们之前绑定阶段存储在listerBank中依据name和id取出相对应的处理器)，并存在合成事件对象的两个内部属性中_dispatchListeners _dispatchIDs,至此一个强大的合成事件对象准备完毕）</p>
+            <p class="c-blue">ReactEventEmitterMixin.js</p>
+            <p>runEventQueueInBatch() => </p>
+            <p class="c-blue">EventPluginHub.js</p>
+            <p>enqueueEvents() => processEventQueue() => executeDispatchesAndReleaseTopLevel() => executeDispatchesAndRelease() =>  </p>
+            <p class="c-blue">EventPluginUtils.js</p>
+            <p>executeDispatchesInOrder() => executeDispatch() => （可以看出他是如何阻止冒泡的）</p>
+            <p class="c-blue">ReactErrorUtils.js</p>
+            <p>invokeGuardedCallback() => （调用处理器同事防止抛错误，从这里也可以看出事件处理器默认有两个参数及合成的事件对象和domId）</p>
+        </article>
+        <article class="page">
+            <p>合成的事件对象</p>
+            <img src="img/synth.png" alt="">
+            <img src="img/pha.png" alt="">
+        </article>
+        <!-- /页面区 -->
+
+        <!-- 页面区 -->
+        <article class="page" >
+            <h1>react自定义的一些事件插件<small>( Not every plugin in the ordering may be loaded at runtime.)</small></h1>
+            <img src="img/plugins.png" alt="">
+        </article>
+        <!-- /页面区 -->
+
+        <!-- 页面区 -->
+        <article class="page" >
+            <h1>react中常用的事件</h1>
+            <img src="img/simple.png" alt="">
+        </article>
+        <!-- /页面区 -->
+
+    </section>
+    <div class="tips author">author: Der ( <a target="_blank" href="http://www.ueder.net" title="ueder">ueder.net</a> ) </div>
+    <button type="button" class="next handle" id="next">&gt;</button>
+
+    <!-- 幻灯片脚本 -->
+    <script src="slides.js"></script>
+    <script type="text/javascript">
+        //幻灯片
+        //可在样式表里添加相应的切换样式，添加到changeTypes数组里
+        new Slides({
+            changeTypes: ['slides', 'slides2'], //切换的风格样式
+            typeCount: 1 //默认第几种风格
+        });
+    </script>
+</body>
+</html>
