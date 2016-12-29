@@ -1,18 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="BookmarkManager">
+    <bookmark url="file://$PROJECT_DIR$/share.html" line="92" mnemonic="2" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="4b87200d-8523-4a22-b77d-09dcc9ee579d" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/img/eventProcess.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/img/listenBank.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/img/pha.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/img/plugins.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/img/simple.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/img/syn.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/img/synth.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/img/type.png" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/slides.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/slides.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/slides.min.js" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/share.html" afterPath="$PROJECT_DIR$/share.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/slides.css" afterPath="$PROJECT_DIR$/slides.css" />
     </list>
     <ignored path="html5-Slides.iws" />
@@ -39,8 +32,18 @@
       <file leaf-file-name="share.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/share.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-475">
-              <caret line="11" column="8" selection-start-line="11" selection-start-column="8" selection-end-line="11" selection-end-column="8" />
+            <state relative-caret-position="211">
+              <caret line="131" column="38" selection-start-line="131" selection-start-column="38" selection-end-line="131" selection-end-column="38" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="slides.css" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/slides.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="434">
+              <caret line="310" column="20" selection-start-line="310" selection-start-column="20" selection-end-line="310" selection-end-column="20" />
               <folding />
             </state>
           </provider>
@@ -55,6 +58,7 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/slides.html" />
+        <option value="$PROJECT_DIR$/slides.css" />
         <option value="$PROJECT_DIR$/share.html" />
       </list>
     </option>
@@ -199,12 +203,12 @@
       <updated>1482889603138</updated>
       <workItem from="1482889604467" duration="22021000" />
       <workItem from="1482975193963" duration="13111000" />
-      <workItem from="1482994078410" duration="3341000" />
+      <workItem from="1482994078410" duration="5906000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="38473000" />
+    <option name="totallyTimeSpent" value="41038000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-46" y="5" width="1936" height="1040" extended-state="1" />
@@ -281,7 +285,7 @@
         <state relative-caret-position="266">
           <caret line="173" column="0" selection-start-line="173" selection-start-column="0" selection-end-line="173" selection-end-column="0" />
           <folding>
-            <element signature="n#!!doc" expanded="true" />
+            <element signature="n#!!doc" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -294,10 +298,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/slides.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="434">
+          <caret line="310" column="20" selection-start-line="310" selection-start-column="20" selection-end-line="310" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/share.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-475">
-          <caret line="11" column="8" selection-start-line="11" selection-start-column="8" selection-end-line="11" selection-end-column="8" />
+        <state relative-caret-position="211">
+          <caret line="131" column="38" selection-start-line="131" selection-start-column="38" selection-end-line="131" selection-end-column="38" />
           <folding />
         </state>
       </provider>

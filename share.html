@@ -9,7 +9,7 @@
     <button type="button" class="prev handle" id="prev">&lt;</button>
     <div class="tips">F11进入全屏，[Enter,Space,&#8594;,&#8595;]翻下一页，[Esc,&#8592;,&#8593;]翻上一页 &nbsp;&nbsp;&nbsp;<a class="c-red" href="#" id="changeType">[切换风格]</a></div>
     <section class="slides" id="slides">
-        
+
 
         <!-- 页面区 -->
         <article class="page">
@@ -129,23 +129,23 @@
             <p>SyntheticMouseEvent() => </p>
             <p class="c-blue">SyntheticUIEvent.js</p>
             <p>SyntheticUIEvent() => </p>
-            <p class="c-blue">SyntheticEvent.js</p>
+            <p class="c-blue underLine">SyntheticEvent.js</p>
             <p>SyntheticEvent() => (会遍历具体的事件插件此处为SyntheticMouseEvent中的自定义的一些属性，切提供了preventDefaul()和stopPropagation(),最终合成了自定义的事件对象)</p>
             <p class="c-blue">EventPropagators.js</p>
             <p>accumulateTwoPhaseDispatches() =>　accumulateTwoPhaseDispatchesSingleSkipTarget() => </p>
-            <p class="c-blue">ReactInstanceHandles.js</p>
+            <p class="c-blue underLine">ReactInstanceHandles.js</p>
             <p>traverseTwoPhaseSkipTarget() => traverseParentPath() => (根据给定的domid向下和向上遍历并执行参数中的回调，这里需要注意一下,模拟出了捕获和冒泡的效果)</p>
         </article>
         <!-- 页面区 -->
         <article class="page">
-            <p class="c-blue">EventPropagators.js</p>
+            <p class="c-blue underLine">EventPropagators.js</p>
             <p>accumulateDirectionalDispatches() => listenerAtPhase() =>（分别处理事件的两个阶段）</p>
             <p>getListener()(从我们之前绑定阶段存储在listerBank中依据name和id取出相对应的处理器)，并存在合成事件对象的两个内部属性中_dispatchListeners _dispatchIDs,至此一个强大的合成事件对象准备完毕）</p>
             <p class="c-blue">ReactEventEmitterMixin.js</p>
             <p>runEventQueueInBatch() => </p>
             <p class="c-blue">EventPluginHub.js</p>
             <p>enqueueEvents() => processEventQueue() => executeDispatchesAndReleaseTopLevel() => executeDispatchesAndRelease() =>  </p>
-            <p class="c-blue">EventPluginUtils.js</p>
+            <p class="c-blue underLine">EventPluginUtils.js</p>
             <p>executeDispatchesInOrder() => executeDispatch() => （可以看出他是如何阻止冒泡的）</p>
             <p class="c-blue">ReactErrorUtils.js</p>
             <p>invokeGuardedCallback() => （调用处理器同事防止抛错误，从这里也可以看出事件处理器默认有两个参数及合成的事件对象和domId）</p>
